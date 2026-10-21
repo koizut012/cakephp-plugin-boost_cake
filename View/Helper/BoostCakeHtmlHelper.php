@@ -20,7 +20,8 @@ class BoostCakeHtmlHelper extends HtmlHelper {
 			unset($args[3]['class']);
 		}
 
-		$html = call_user_func_array(array('parent', 'useTag'), $args);
+		// call_user_func_array(array('parent', ...)) は PHP 8.2 で非推奨のため、可変長引数で呼ぶ
+		$html = parent::useTag(...$args);
 
 		if ($tag === 'radio') {
 			$regex = '/(<label)(.*?>)/';
